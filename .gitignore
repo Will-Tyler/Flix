@@ -68,3 +68,4 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 iOS_flix_assets
+Flix/Assets.xcassets/*
