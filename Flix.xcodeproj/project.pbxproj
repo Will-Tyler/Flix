@@ -33,6 +33,8 @@
 		4C0D03A421ED551C004629EF /* ticket_tabbar_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0D039021ED551C004629EF /* ticket_tabbar_icon@2x.png */; };
 		4C0D03A521ED551C004629EF /* superhero_tabbar_item@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0D039121ED551C004629EF /* superhero_tabbar_item@2x.png */; };
 		4C0D03A621ED551C004629EF /* appicon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0D039221ED551C004629EF /* appicon@2x.png */; };
+		4C0D03A921ED5C58004629EF /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D03A821ED5C58004629EF /* Movie.swift */; };
+		4C148F0E21F0D32100C20642 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C148F0D21F0D32100C20642 /* MovieTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		4C0D039021ED551C004629EF /* ticket_tabbar_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ticket_tabbar_icon@2x.png"; sourceTree = "<group>"; };
 		4C0D039121ED551C004629EF /* superhero_tabbar_item@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "superhero_tabbar_item@2x.png"; sourceTree = "<group>"; };
 		4C0D039221ED551C004629EF /* appicon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "appicon@2x.png"; sourceTree = "<group>"; };
+		4C0D03A821ED5C58004629EF /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		4C148F0D21F0D32100C20642 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +141,9 @@
 			isa = PBXGroup;
 			children = (
 				4C0D035021ED5313004629EF /* AppDelegate.swift */,
-				4C0D035221ED5313004629EF /* ViewController.swift */,
+				4C0D03A721ED5C43004629EF /* Controllers */,
+				4C0D03AA21ED5C67004629EF /* Models */,
+				4C148F0C21F0D30400C20642 /* Views */,
 				4C0D035921ED5315004629EF /* LaunchScreen.storyboard */,
 				4C0D035721ED5315004629EF /* Assets.xcassets */,
 				4C0D035C21ED5315004629EF /* Info.plist */,
@@ -188,6 +194,30 @@
 				4C0D039221ED551C004629EF /* appicon@2x.png */,
 			);
 			path = iOS_flix_assets;
+			sourceTree = "<group>";
+		};
+		4C0D03A721ED5C43004629EF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4C0D035221ED5313004629EF /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4C0D03AA21ED5C67004629EF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4C0D03A821ED5C58004629EF /* Movie.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4C148F0C21F0D30400C20642 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4C148F0D21F0D32100C20642 /* MovieTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,6 +372,8 @@
 			files = (
 				4C0D035321ED5313004629EF /* ViewController.swift in Sources */,
 				4C0D035121ED5313004629EF /* AppDelegate.swift in Sources */,
+				4C148F0E21F0D32100C20642 /* MovieTableViewCell.swift in Sources */,
+				4C0D03A921ED5C58004629EF /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
