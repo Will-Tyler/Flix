@@ -61,6 +61,10 @@ final class ViewController: UITableViewController {
 
 		cell.textLabel?.text = movie.title
 
+		let baseURL = URL(string: "https://image.tmdb.org/t/p/w185")!
+		let posterPath = movie.posterPath
+		let posterURL = baseURL.appendingPathComponent(posterPath.absoluteString)
+
 		return cell
 	}
 
