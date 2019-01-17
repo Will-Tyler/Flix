@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import AlamofireImage
 
 
-final class ViewController: UITableViewController {
+final class MoviesViewController: UITableViewController {
 
 	private var movies = [Movie]() {
 		didSet {
@@ -20,13 +21,30 @@ final class ViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		view.backgroundColor = .white
+		view.backgroundColor = UIColor(white: 55 / 255, alpha: 1)
 
 		loadMovies()
 
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.cellID)
+	}
+
+	override var title: String? {
+		get {
+			return "Movies"
+		}
+		set {}
+	}
+	override var preferredStatusBarStyle: UIStatusBarStyle {
+		get {
+			return .lightContent
+		}
+	}
+	override var prefersStatusBarHidden: Bool {
+		get {
+			return shouldHideStatusBar
+		}
 	}
 
 	private func loadMovies() {
@@ -44,8 +62,11 @@ final class ViewController: UITableViewController {
 					self.movies = try! JSONDecoder().decode([Movie].self, from: JSONSerialization.data(withJSONObject: results))
 				}
 			}
+
+			UIApplication.shared.isNetworkActivityIndicatorVisible = false
 		}
 
+		UIApplication.shared.isNetworkActivityIndicatorVisible = true
 		task.resume()
 	}
 
@@ -59,13 +80,38 @@ final class ViewController: UITableViewController {
 		let movie = movies[indexPath.row]
 		let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.cellID, for: indexPath) as! MovieTableViewCell
 
-		cell.textLabel?.text = movie.title
+		cell.titleLabel.text = movie.title
+		cell.synopsisLabel.text = movie.overview
 
 		let baseURL = URL(string: "https://image.tmdb.org/t/p/w185")!
 		let posterPath = movie.posterPath
 		let posterURL = baseURL.appendingPathComponent(posterPath.absoluteString)
 
+		cell.posterView.af_setImage(withURL: posterURL)
+
 		return cell
+	}
+	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 128
+	}
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.deselectRow(at: indexPath, animated: true)
+	}
+
+	private var shouldHideStatusBar = false
+	override func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
+		shouldHideStatusBar = false
+		setNeedsStatusBarAppearanceUpdate()
+	}
+	override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		if scrollView.panGestureRecognizer.translation(in: scrollView.superview).y < 0 {
+			shouldHideStatusBar = true
+			setNeedsStatusBarAppearanceUpdate()
+		}
+		else {
+			shouldHideStatusBar = false
+			setNeedsStatusBarAppearanceUpdate()
+		}
 	}
 
 }
