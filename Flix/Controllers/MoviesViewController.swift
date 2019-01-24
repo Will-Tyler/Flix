@@ -14,6 +14,20 @@ final class MoviesViewController: UITableViewController {
 
 	private lazy var detailController = MovieViewController()
 
+	convenience init() {
+		self.init(nibName: nil, bundle: nil)
+	}
+	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+
+		title = "Movies"
+		tabBarItem.image = UIImage(named: "now_playing_tabbar_item")
+		tabBarItem.title = "Now Playing"
+	}
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -26,12 +40,6 @@ final class MoviesViewController: UITableViewController {
 		tableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.cellID)
 	}
 
-	override var title: String? {
-		get {
-			return "Movies"
-		}
-		set {}
-	}
 	override var prefersStatusBarHidden: Bool {
 		get {
 			return shouldHideStatusBar

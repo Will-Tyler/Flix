@@ -15,15 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var window: UIWindow?
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-		let navigation = UINavigationController(rootViewController: MoviesViewController())
-
-		navigation.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-		navigation.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-		navigation.navigationBar.barTintColor = UIColor(white: 0x40 / 255, alpha: 1)
-
 		window = UIWindow(frame: UIScreen.main.bounds)
 
-		window!.rootViewController = navigation
+		window!.rootViewController = TabBarController()
 		window!.makeKeyAndVisible()
 
 		return true

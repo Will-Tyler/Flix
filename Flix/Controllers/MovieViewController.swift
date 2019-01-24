@@ -37,22 +37,22 @@ class MovieViewController: UIViewController {
 
 		return label
 	}()
-	private lazy var overviewLabel: UITextView = {
-		let label = UITextView()
+	private lazy var overviewTextView: UITextView = {
+		let view = UITextView()
 
-		label.textColor = .white
-		label.isEditable = false
-		label.backgroundColor = .clear
-		label.font = UIFont.systemFont(ofSize: UIFont.labelFontSize)
+		view.textColor = .white
+		view.isEditable = false
+		view.backgroundColor = .clear
+		view.font = UIFont.systemFont(ofSize: UIFont.labelFontSize)
 
-		return label
+		return view
 	}()
 
 	private func setupInitialLayout() {
 		view.addSubview(backdropView)
 		view.addSubview(posterView)
 		view.addSubview(titleLabel)
-		view.addSubview(overviewLabel)
+		view.addSubview(overviewTextView)
 
 		let safeArea = view.safeAreaLayoutGuide
 
@@ -60,13 +60,13 @@ class MovieViewController: UIViewController {
 		backdropView.topAnchor.constraint(equalTo: safeArea.topAnchor).isActive = true
 		backdropView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor).isActive = true
 		backdropView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor).isActive = true
-		backdropView.heightAnchor.constraint(equalTo: safeArea.heightAnchor, multiplier: 1 / 3).isActive = true
+		backdropView.heightAnchor.constraint(equalTo: backdropView.widthAnchor, multiplier: 2/3).isActive = true
 
 		posterView.translatesAutoresizingMaskIntoConstraints = false
 		posterView.centerYAnchor.constraint(equalTo: backdropView.bottomAnchor).isActive = true
 		posterView.heightAnchor.constraint(equalToConstant: 128).isActive = true
 		posterView.widthAnchor.constraint(equalTo: posterView.heightAnchor, multiplier: 2 / 3).isActive = true
-		posterView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 8).isActive = true
+		posterView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 32).isActive = true
 
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
 		titleLabel.topAnchor.constraint(equalTo: backdropView.bottomAnchor).isActive = true
@@ -74,17 +74,17 @@ class MovieViewController: UIViewController {
 		titleLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -8).isActive = true
 		titleLabel.heightAnchor.constraint(equalToConstant: titleLabel.intrinsicContentSize.height).isActive = true
 
-		overviewLabel.translatesAutoresizingMaskIntoConstraints = false
-		overviewLabel.topAnchor.constraint(equalTo: posterView.bottomAnchor, constant: 8).isActive = true
-		overviewLabel.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 8).isActive = true
-		overviewLabel.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -8).isActive = true
-		overviewLabel.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -8).isActive = true
+		overviewTextView.translatesAutoresizingMaskIntoConstraints = false
+		overviewTextView.topAnchor.constraint(equalTo: posterView.bottomAnchor, constant: 8).isActive = true
+		overviewTextView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 8).isActive = true
+		overviewTextView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -8).isActive = true
+		overviewTextView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -8).isActive = true
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		view.backgroundColor = UIColor.black
+		view.backgroundColor = UIColor(white: 55 / 255, alpha: 1)
 
 		setupInitialLayout()
 	}
@@ -93,7 +93,7 @@ class MovieViewController: UIViewController {
 		didSet {
 			title = movie.title
 			titleLabel.text = movie.title
-			overviewLabel.text = movie.overview
+			overviewTextView.text = movie.overview
 
 			let baseURL = URL(string: "https://image.tmdb.org/t/p/w185")!
 			let posterPath = movie.posterPath
