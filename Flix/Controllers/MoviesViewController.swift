@@ -12,11 +12,7 @@ import AlamofireImage
 
 final class MoviesViewController: UITableViewController {
 
-	private var movies = [Movie]() {
-		didSet {
-			tableView.reloadData()
-		}
-	}
+	private lazy var detailController = MovieViewController()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -36,14 +32,15 @@ final class MoviesViewController: UITableViewController {
 		}
 		set {}
 	}
-	override var preferredStatusBarStyle: UIStatusBarStyle {
-		get {
-			return .lightContent
-		}
-	}
 	override var prefersStatusBarHidden: Bool {
 		get {
 			return shouldHideStatusBar
+		}
+	}
+
+	private var movies = [Movie]() {
+		didSet {
+			tableView.reloadData()
 		}
 	}
 
@@ -95,6 +92,8 @@ final class MoviesViewController: UITableViewController {
 		return 128
 	}
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		detailController.movie = movies[indexPath.row]
+		navigationController?.pushViewController(detailController, animated: true)
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
 
